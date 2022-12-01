@@ -11,6 +11,7 @@ def kda(name):
     player_info = requests.get(name_api_link)
     resp1 = player_info.json()
     player_puuid = resp1['puuid']
+    player_id=resp1['id']
     url2=f'https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{player_puuid}/ids?start=0&count=20'+'&api_key='+api_key
     matches_ids=requests.get(url2)
     resp2= matches_ids.json()
@@ -23,6 +24,7 @@ def kda(name):
     assists=resp3['info']['participants'][user_index]['assists']
     kda=round((kills+assists)/deaths,1)
     print(f'KDA {kda}')
+    print(player_id)
 
 def champion(name):
     url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
@@ -138,6 +140,28 @@ def rank(name):
     print(f'{ranga_informacje} \n{wr}')
 
 
+def maestria(name):
+    url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
+    name_api_link = url1 +"?api_key="+api_key
+    player_info = requests.get(name_api_link)
+    resp1 = player_info.json()
+    player_id = resp1['id']
+    url2 =f'https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{player_id}'+'?api_key='+api_key
+    maestria_info=requests.get(url2)
+    maestria_info=maestria_info.json()
+    champ_id=maestria_info[0]['championId']
+    x=champ_id
+    if x == 141:
+        champ_name='Kayn'
+    elif x == 266:
+        champ_name='Aatrox'
+    elif x == 1:
+        champ_name='Annie'
+
+    level=maestria_info[0]['championLevel']
+    punkty=maestria_info[0]['championPoints']
+    print(f'Twoj czempion z najwieksza iloscia punktow to {champ_name}\nPoziom Maestrii: {level}\nIlość punktów: {punkty}')
+
 
 #print(f'=======\nObecna ranga\n=======')
 #rank(name=name)
@@ -150,5 +174,9 @@ def rank(name):
 
 
 
-
 # https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/_pj7SWuX6ln_mAFfdQy8uh9tYRygVilOIHtxWquVDFwxNGqH4fW8fWIW5g?api_key=RGAPI-62ac970f-d313-4e55-a95e-59b6ef103018
+
+#puuid IRO6ynOCqYkB-CuD4WRYUE_nUhkyJGHhjPegjSBe_pgCR1GvDpKruraXXJPbylcADIbarTbVQ3C_XQ
+#id Cy0mD92X1BC_zaySnL4m8C9gGZtzEGDNnurFOzb6NWvgADXw_4HcJKfezA
+
+maestria(name=name)
