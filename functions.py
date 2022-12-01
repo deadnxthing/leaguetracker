@@ -145,9 +145,7 @@ def rank(name):
 #champion(name=name)
 #kda(name=name)
 #CS(name=name)
-#print('=======')
-
-visionscore(name=name)   
+#print('=======')   
 
 
 
