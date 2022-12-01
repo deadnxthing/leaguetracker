@@ -14,7 +14,7 @@ def kda(name):
     url2=f'https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{player_puuid}/ids?start=0&count=20'+'&api_key='+api_key
     matches_ids=requests.get(url2)
     resp2= matches_ids.json()
-    match_url = f'https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[1]}'+'?api_key='+api_key
+    match_url = f'https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[0]}'+'?api_key='+api_key
     match_info = requests.get(match_url)
     resp3 = match_info.json()
     user_index=resp3['metadata']['participants'].index(player_puuid)
@@ -23,6 +23,22 @@ def kda(name):
     assists=resp3['info']['participants'][user_index]['assists']
     kda=round((kills+assists)/deaths,1)
     print(f'KDA {kda}')
+
+def champion(name):
+    url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
+    name_api_link = url1 +"?api_key="+api_key
+    player_info = requests.get(name_api_link)
+    resp1 = player_info.json()
+    player_puuid = resp1['puuid']
+    url2=f'https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{player_puuid}/ids?start=0&count=20'+'&api_key='+api_key
+    matches_ids=requests.get(url2)
+    resp2= matches_ids.json()
+    match_url = f'https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[0]}'+'?api_key='+api_key
+    match_info = requests.get(match_url)
+    resp3 = match_info.json()
+    user_index=resp3['metadata']['participants'].index(player_puuid)
+    champ=resp3['info']['participants'][user_index]['championName']
+    print(champ)
 
 def CS(name):
     url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
@@ -41,7 +57,7 @@ def CS(name):
     czas=resp3['info']['participants'][index]['timePlayed']
     minuty=czas/60
     cs=round(miniony/minuty,1)
-    print(f' {cs} CS')
+    print(f'CS {cs}')
 
 
 def rank(name):
@@ -62,14 +78,23 @@ def rank(name):
     losses=ranga[0]['losses']
     played=wins+losses
     wr = round(wins/played*100,1)
-    wr=f'{wr}%'
-    
-    print(f'{ranga_informacje} {wr}')
+    wr=f'Winrate: {wr}%'
+    print(f'{ranga_informacje} \n{wr}')
+
+
+
+print(f'=======\nObecna ranga\n=======')
+rank(name=name)
+print(f'=======\nStatystyki z ostatniej gry\n=======')
+champion(name=name)
+kda(name=name)
+CS(name=name)
+print('=======')
+
     
 
-rank(name=name)
-CS(name=name)
-kda(name=name)
+
+
 
 
 # https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/_pj7SWuX6ln_mAFfdQy8uh9tYRygVilOIHtxWquVDFwxNGqH4fW8fWIW5g?api_key=RGAPI-62ac970f-d313-4e55-a95e-59b6ef103018
