@@ -41,6 +41,23 @@ def champion(name):
     info=resp3['info']['participants'][user_index]
     print(info)
 
+def gold(name):
+    url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
+    name_api_link = url1 +"?api_key="+api_key
+    player_info = requests.get(name_api_link)
+    resp1 = player_info.json()
+    player_puuid = resp1['puuid']
+    url2=f'https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{player_puuid}/ids?start=0&count=20'+'&api_key='+api_key
+    matches_ids=requests.get(url2)
+    resp2= matches_ids.json()
+    match_url = f'https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[0]}'+'?api_key='+api_key
+    match_info = requests.get(match_url)
+    resp3 = match_info.json()
+    user_index=resp3['metadata']['participants'].index(player_puuid)
+    goldPerMinute=resp3['info']['participants'][user_index]['goldPerMinute']
+    goldEarned=resp3['info']['participants'][user_index]['goldEarned']
+    print(f'Złoto na minute: {goldPerMinute}\nZdobyte złoto: {goldEarned}')
+
 def damage(name):
     url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
     name_api_link = url1 +"?api_key="+api_key
@@ -111,7 +128,7 @@ def rank(name):
 #CS(name=name)
 #print('=======')
 
-damage(name=name)   
+gold(name=name)   
 
 
 
