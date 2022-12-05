@@ -94,7 +94,7 @@ def damage(name):
     damage_taken=resp3['info']['participants'][user_index]['totalDamageTaken']
     healing=resp3['info']['participants'][user_index]['totalHeal']
     true_damage_to_champion=resp3['info']['participants'][user_index]['trueDamageDealtToChampions']
-    print(f'Zadane obrazenia graczą: {damage_to_champion}\nOtrzymane obrazenia: {damage_taken}\nCalkowite leczenie: {healing}\nZadane obrażenia nieuchronne: {true_damage_to_champion}')
+    print(f'Zadane obrazenia graczom: {damage_to_champion}\nZadane obrażenia nieuchronne: {true_damage_to_champion}\nCalkowite leczenie: {healing}\nOtrzymane obrazenia: {damage_taken}')
 
 def CS(name):
     url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
@@ -111,6 +111,7 @@ def CS(name):
     index=resp3['metadata']['participants'].index(player_puuid)
     miniony=resp3['info']['participants'][index]['totalMinionsKilled']
     czas=resp3['info']['participants'][index]['timePlayed']
+    wszystko=resp3['info']['participants'][index]
     minuty=czas/60
     cs=round(miniony/minuty,1)
     print(f'CS {miniony} ({cs})')
@@ -122,6 +123,7 @@ def rank(name):
     player_info = requests.get(name_api_link)
     resp1 = player_info.json()
     player_id = resp1['id']
+    player_puuid =resp1['puuid']
     url2 =f'https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/{player_id}'+'?api_key='+api_key
     rank_info=requests.get(url2)
     rank_info=rank_info.json()
@@ -324,6 +326,9 @@ print(f'=======\nStatystyki z ostatniej gry\n=======')
 champion(name=name)
 kda(name=name)
 CS(name=name)
+gold(name=name)
+visionscore(name=name)
+damage(name=name)
 print(f'=======\nStatystyki twojej Maestri\n=======')   
 maestria(name=name)
 
