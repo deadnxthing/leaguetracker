@@ -118,26 +118,29 @@ def CS(name):
 
 
 def rank(name):
-    url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
-    name_api_link = url1 +"?api_key="+api_key
-    player_info = requests.get(name_api_link)
-    resp1 = player_info.json()
-    player_id = resp1['id']
-    player_puuid =resp1['puuid']
-    url2 =f'https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/{player_id}'+'?api_key='+api_key
-    rank_info=requests.get(url2)
-    rank_info=rank_info.json()
-    ranga=(rank_info)
-    division=ranga[0]['tier']
-    tier=ranga[0]['rank']
-    lp=ranga[0]['leaguePoints']
-    ranga_informacje=f'{division} {tier} {lp}LP'
-    wins=ranga[0]['wins']
-    losses=ranga[0]['losses']
-    played=wins+losses
-    wr = round(wins/played*100,1)
-    wr=f'Winrate: {wr}%  {wins}W {losses}L'
-    print(f'{ranga_informacje} \n{wr}')
+    try:
+        url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
+        name_api_link = url1 +"?api_key="+api_key
+        player_info = requests.get(name_api_link)
+        resp1 = player_info.json()
+        player_id = resp1['id']
+        url2 =f'https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/{player_id}'+'?api_key='+api_key
+        rank_info=requests.get(url2)
+        rank_info=rank_info.json()
+        ranga=(rank_info)
+        division=ranga[0]['tier']
+        tier=ranga[0]['rank']
+        lp=ranga[0]['leaguePoints']
+        ranga_informacje=f'{division} {tier} {lp}LP'
+        wins=ranga[0]['wins']
+        losses=ranga[0]['losses']
+        played=wins+losses
+        wr = round(wins/played*100,1)
+        wr=f'Winrate: {wr}%  {wins}W {losses}L'
+        print(f'{ranga_informacje} \n{wr}')
+    except Exception:
+        print('Ten użytkownik nie posiada rangi')
+   
 
 
 def maestria(name):
@@ -324,7 +327,7 @@ print(f'=======\nObecna ranga\n=======')
 rank(name=name)
 print(f'=======\nStatystyki z ostatniej gry\n=======')
 champion(name=name)
-kda(name=name)
+kda(name=name)#
 CS(name=name)
 gold(name=name)
 visionscore(name=name)
