@@ -1,11 +1,18 @@
 from apikey import api_key
 import requests
-import json
 
-name = input('Wprowadź nazwe swojego przywolywacza: ')
-name = str(name.replace(' ', '%20'))
 
-def kda(name):
+#name = input('Wprowadź nazwe swojego przywolywacza: ')
+#name = str(name.replace(' ', '%20'))
+def puuid(name):
+    url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
+    name_api_link = url1 +"?api_key="+api_key
+    player_info = requests.get(name_api_link)
+    resp1 = player_info.json()
+    player_puuid = resp1['puuid']    
+
+
+def kda(name):   
     url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
     name_api_link = url1 +"?api_key="+api_key
     player_info = requests.get(name_api_link)
@@ -24,6 +31,7 @@ def kda(name):
     assists=resp3['info']['participants'][user_index]['assists']
     kda=round((kills+assists)/deaths,1)
     print(f'KDA {kda}')
+
 
 def champion(name):
     url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
@@ -323,17 +331,17 @@ def maestria(name):
     print(f'Twoj czempion z najwieksza iloscia punktow to {champ_name}\nPoziom Maestrii: {level}\nIlość punktów: {punkty}')
     
 
-print(f'=======\nObecna ranga\n=======')
-rank(name=name)
-print(f'=======\nStatystyki z ostatniej gry\n=======')
-champion(name=name)
-kda(name=name)#
-CS(name=name)
-gold(name=name)
-visionscore(name=name)
-damage(name=name)
-print(f'=======\nStatystyki twojej Maestri\n=======')   
-maestria(name=name)
+#print(f'=======\nObecna ranga\n=======')
+#rank(name=name)
+#print(f'=======\nStatystyki z ostatniej gry\n=======')
+#champion(name=name)
+#kda()
+#CS(name=name)
+#gold(name=name)
+#visionscore(name=name)
+#damage(name=name)
+#print(f'=======\nStatystyki twojej Maestri\n=======')   
+#maestria(name=name)
 
 
 
