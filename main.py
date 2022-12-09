@@ -3,6 +3,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 from apikey import api_key
 import functions
 import sys
+import requests
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
 
@@ -10,34 +11,44 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+
+
 def nickname():
-    #print("Nick: %s" %(entry_1.get()))
     nick = entry_1.get()
-    if nick == '':
-        print('nie podano zadnej nazwy')
     name = str(nick.replace(' ', '%20'))
+    if nick == '':
+        print('Nie podano zadnej nazwy')
     try:
-        functions.puuid(name=name)
+        url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
+        name_api_link = url1 +"?api_key="+api_key
+        player_info = requests.get(name_api_link)
+        resp1 = player_info.json()
+        puuid = resp1['puuid']
+        id = resp1['id']
     except:
         print('❌Taki gracz nie istnieje❌')
         sys.exit()
     print(f'=======\nObecna ranga\n=======')
-    functions.rank(name=name)
+    functions.rank(id=id)
     print(f'=======\nStatystyki z ostatniej gry\n=======')
-    functions.champion(name=name)
-    functions.kda(name=name)
-    functions.CS(name=name)
-    functions.gold(name=name)
-    functions.visionscore(name=name)
-    functions.damage(name=name)
+    functions.champion(puuid=puuid)
+    functions.kda(puuid=puuid)
+    functions.CS(puuid=puuid)
+    functions.gold(puuid=puuid)
+    functions.visionscore(puuid=puuid)
+    functions.damage(puuid=puuid)
     print(f'=======\nStatystyki twojej Maestri\n=======')   
-    functions.maestria(name=name)
+    functions.maestria(id=id)
+
+
 
 
 window = Tk()
 
 window.geometry("1000x750")
 window.configure(bg = "#FFFFFF")
+window.iconbitmap(r"leaguetrash\icons\icon.ico")
+window.title("League Of Legends Stats Tracker by kuba.#4158")
 
 
 canvas = Canvas(
@@ -83,6 +94,15 @@ canvas.create_text(
     text="Wprowadz nazwe",
     fill="#000000",
     font=("Inter", 36 * -1)
+)
+
+canvas.create_text(
+    8.0,
+    8.0,
+    anchor="nw",
+    text="Riot API rate limits\n20 requests every 1 seconds(s)\n100 requests every 2 minutes(s)",
+    fill="#000000",
+    font=("Inter", 15 * -1)
 )
 
 canvas.create_text(
