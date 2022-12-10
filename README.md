@@ -21,5 +21,6 @@ m4yski
 ```
 
 Po wpisaniu nazwy i kliknięciu przycisku "Potwierdz" ukaże nam się okno ze statystykami
-jako przykład posłuże się jednym z wyżej wymienionych nicków
+> jako przykład posłuże się jednym z wyżej wymienionych nicków
 ![image](https://user-images.githubusercontent.com/119539361/206876179-323b4bd3-e90d-4b6f-adfa-cd548b648ab4.png)
+
