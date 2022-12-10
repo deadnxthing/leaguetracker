@@ -31,7 +31,10 @@ Po wpisaniu nazwy i kliknięciu przycisku "Potwierdz" ukaże nam się okno ze st
 >Informacje podane w przykładzie powyżej mogą się róznić ze względu na to że wszystkie te konta są aktywne
 
 
-Do potwierdzenia tych informacji można zajrzeć [na tą strone](https://www.op.gg/) na której należy wybrać region **Europe Nordic & East** a następnie wpisać wybrany przez nas nick. Po wejściu na profil danego gracza należy zaktualizować informacje klikając ten przycisk i odczekać chwilę![image](https://user-images.githubusercontent.com/119539361/206876917-efb16724-06ab-4972-9c13-2c0876fe1020.png)
+Do potwierdzenia tych informacji można zajrzeć [na tą strone](https://www.op.gg/) na której należy wybrać region **Europe Nordic & East** a następnie wpisać wybrany przez nas nick. Po wejściu na profil danego gracza należy zaktualizować informacje klikając ten przycisk i odczekać chwilę
+
+
+![image](https://user-images.githubusercontent.com/119539361/206876917-efb16724-06ab-4972-9c13-2c0876fe1020.png)
 
 
 Jak widać wszystko się zgadza
