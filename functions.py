@@ -2,12 +2,12 @@ from apikey import api_key
 import requests
 
 def rankinfo(id):
-        url2 = (
+        url = (
             f"https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/{id}"
             + "?api_key="
             + api_key
         )
-        rank_info = requests.get(url2)
+        rank_info = requests.get(url)
         rank_info = rank_info.json()
         return rank_info
 
@@ -48,6 +48,7 @@ def last_match(resp,user_index):
     cs = round(miniony / minuty, 1)
     cs=f'{miniony} ({cs})'
     kda = round((kills + assists) / deaths, 1)
+    kda = f'{kda}  {kills}K/{deaths}D/{assists}A'
     return kda,champion,visionscore,goldEarned,goldperminute,damage_to_champion,true_damage_to_champion,damage_taken,healing,cs
     
 
@@ -61,6 +62,7 @@ def rank(rank):
         played = wins + losses
         wr = round(wins / played * 100, 1)
         wr = f"Winrate: {wr}%  {wins}W {losses}L"
+        lp=f'{lp}LP'
     except Exception:
         division = 'unranked'
         tier = ''
@@ -247,6 +249,4 @@ def maestria(id):
     champ_name = get_champ_name(int(x))
     level = maestria_info[0]["championLevel"]
     punkty = maestria_info[0]["championPoints"]
-    print(
-        f"Twoj czempion z najwieksza iloscia punktow to {champ_name}\nPoziom Maestrii: {level}\nIlość punktów: {punkty}"
-    )
+    return champ_name,champ_id,level,punkty

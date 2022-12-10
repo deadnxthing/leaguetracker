@@ -1,5 +1,5 @@
 from pathlib import Path
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, Toplevel
+from tkinter import Tk, Canvas, Entry, Button, PhotoImage, Toplevel
 from apikey import api_key
 from time import sleep
 import functions
@@ -67,7 +67,9 @@ def nickname():
         id = resp1['id']
         resp=functions.lastmatchinfo(puuid=puuid)
         last_match=functions.last_match(resp=resp[0],user_index=resp[1])
-
+        resp2=functions.rankinfo(id=id)
+        rank=functions.rank(rank=resp2)
+        maestria=functions.maestria(id=id)
 
         open_new_window(
             nick=nick,
@@ -81,7 +83,15 @@ def nickname():
             healing=last_match[8],
             tkndmg=last_match[7],
             cs=last_match[9],
-        )
+            division=str.capitalize(rank[0]),
+            tier=rank[1],
+            lp=rank[2],
+            wr=rank[3],
+            maestriachmpname=maestria[0],
+            maestriachmpid=maestria[1],
+            level=maestria[2],
+            punkty=maestria[3],
+            )
     except:
         print(
             '❌Taki gracz nie istnieje❌'
@@ -90,7 +100,7 @@ def nickname():
 
 
 
-def open_new_window(nick,kda,champion,visionscore,goldearned,goldpermin,dmgtochmp,trdmgtochamp,healing,tkndmg,cs):
+def open_new_window(nick,kda,champion,visionscore,goldearned,goldpermin,dmgtochmp,trdmgtochamp,healing,tkndmg,cs,division,tier,lp,wr,maestriachmpname,maestriachmpid,level,punkty):
     window2= Toplevel(window)
     window2.geometry("1200x700")
     window2.configure(bg = "#FFFFFF")
@@ -151,9 +161,9 @@ def open_new_window(nick,kda,champion,visionscore,goldearned,goldpermin,dmgtochm
         outline="")
 
     image_image_300 = PhotoImage(
-        file=relative_to_assets("gold.png"))   #ranga
+        file=relative_to_assets(f"{str.lower(division)}.png"))   #ranga
     image_300 = canvas.create_image(
-        703.0,
+        698.0,
         392.0,
         image=image_image_300
     )
@@ -167,7 +177,7 @@ def open_new_window(nick,kda,champion,visionscore,goldearned,goldpermin,dmgtochm
     )
 
     image_image_500 = PhotoImage(
-        file=relative_to_assets("141.png"))   #obrazek czempiona
+        file=relative_to_assets(f"{maestriachmpid}.png"))   #obrazek czempiona
     image_500 = canvas.create_image(
         1041.0,
         321.0,
@@ -191,7 +201,7 @@ def open_new_window(nick,kda,champion,visionscore,goldearned,goldpermin,dmgtochm
     )
 
     canvas.create_text(
-        655.0,
+        648.0,
         264.0,
         anchor="nw",
         text="Ranga",
@@ -216,7 +226,7 @@ def open_new_window(nick,kda,champion,visionscore,goldearned,goldpermin,dmgtochm
     )
 
     canvas.create_text(
-        403.0,
+        422.0,
         45.0,
         anchor="nw",
         text="Statystyki Przywoływacza",
@@ -259,6 +269,51 @@ def open_new_window(nick,kda,champion,visionscore,goldearned,goldpermin,dmgtochm
         fill="#000000",
         font=("Inter", 20 * -1)
     )
+
+    #ranga
+
+    canvas.create_text(
+        630.0,
+        500.0,
+        anchor="nw",
+        text=(f'{division} {tier} {lp}'),
+        fill="#000000",
+        font=("Inter", 25 * -1)
+    )
+    canvas.create_text(
+        592.0,
+        575.0,
+        anchor="nw",
+        text=(f'{wr}'),
+        fill="#000000",
+        font=("Inter", 18 * -1)
+    )
+    #maestria
+    canvas.create_text(
+        1000.0,
+        415.0,
+        anchor="nw",
+        text=(f'{maestriachmpname}'),
+        fill="#000000",
+        font=("Inter", 25 * -1)
+    )
+    canvas.create_text(
+        950.0,
+        485.0,
+        anchor="nw",
+        text=(f'Poziom Maestri:\n            {level}'),
+        fill="#000000",
+        font=("Inter", 25 * -1)
+    )
+    canvas.create_text(
+        950.0,
+        580.0,
+        anchor="nw",
+        text=(f'Ilośc Punktów:\n      {punkty}'),
+        fill="#000000",
+        font=("Inter", 28 * -1)
+    )
+    
     window2.resizable(False, False)
     window2.mainloop()
 
