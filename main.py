@@ -12,7 +12,85 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
-def opennewwindow(nick):
+
+def error_window(nick):
+    window3= Toplevel(window)
+    window3.geometry("700x500")
+    window3.configure(bg = "#FFFFFF")
+    window3.iconbitmap(r"leaguetrash\assets\frame0\icon.ico")
+    window3.title(f'Błąd')
+
+    canvas = Canvas(
+        window3,
+        bg = "#FFFFFF",
+        height = 700,
+        width = 1200,
+        bd = 0,
+        highlightthickness = 0,
+        relief = "ridge"
+    )
+
+    canvas.place(x = 0, y = 0)
+    image_image_100 = PhotoImage(
+        file=relative_to_assets("image_100.png"))
+    image_100 = canvas.create_image(
+        600.0,
+        350.0,
+        image=image_image_100
+    )
+
+    canvas.create_text(
+        138.0,
+        164.0,
+        anchor="nw",
+        text=f"Taki gracz jak {nick} nie istnieje!\nUpewnij się co do poprawności wpisanej nazwy",
+        fill="#ff0000",
+        font=("Inter", 20 * -1)
+    ) 
+
+
+    window3.resizable(False, False)
+    window3.mainloop()
+
+
+
+
+def nickname():
+    nick = entry_1.get()
+    name = str(nick.replace(' ', '%20'))
+    try:
+        url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
+        name_api_link =(url1+"?api_key="+api_key)
+        player_info = requests.get(name_api_link)
+        resp1 = player_info.json()
+        puuid = resp1['puuid']
+        id = resp1['id']
+        resp=functions.lastmatchinfo(puuid=puuid)
+        last_match=functions.last_match(resp=resp[0],user_index=resp[1])
+
+
+        open_new_window(
+            nick=nick,
+            kda=last_match[0],
+            champion=last_match[1],
+            visionscore=last_match[2],
+            goldearned=last_match[3],
+            goldpermin=last_match[4],
+            dmgtochmp=last_match[5],
+            trdmgtochamp=last_match[6],
+            healing=last_match[8],
+            tkndmg=last_match[7],
+            cs=last_match[9],
+        )
+    except:
+        print(
+            '❌Taki gracz nie istnieje❌'
+            )
+        error_window(nick=nick)
+
+
+
+def open_new_window(nick,kda,champion,visionscore,goldearned,goldpermin,dmgtochmp,trdmgtochamp,healing,tkndmg,cs):
     window2= Toplevel(window)
     window2.geometry("1200x700")
     window2.configure(bg = "#FFFFFF")
@@ -153,7 +231,7 @@ def opennewwindow(nick):
         123.0,
         image=image_image_1000
     )
-    #statystyki
+    #Nazwa przywolywacza
 
     canvas.create_text(
         500.0,
@@ -163,79 +241,26 @@ def opennewwindow(nick):
         fill="#000000",
         font=("Inter", 25 * -1)
     )
+
+    #Ostatni mecz
+    canvas.create_text(
+        220.0,
+        320.0,
+        anchor="nw",
+        text=(f'Czempion: {champion}\nKDA {kda}\nCS {cs}\nPunkty wizji: {visionscore}\nZdobyte Złoto: {goldearned}\nZłoto na minutę: {goldpermin}'),
+        fill="#000000",
+        font=("Inter", 20 * -1)
+    )
+    canvas.create_text(
+        220.0,
+        470.0,
+        anchor="nw",
+        text=(f'Zadane Obrażenia: \n{dmgtochmp}\nNieuchronne obrażenia: \n{trdmgtochamp}\nOtrzymane Obrażenia: \n{tkndmg}\nLeczenie: \n{healing}'),
+        fill="#000000",
+        font=("Inter", 20 * -1)
+    )
     window2.resizable(False, False)
     window2.mainloop()
-
-def error_window(nick):
-    window3= Toplevel(window)
-    window3.geometry("700x500")
-    window3.configure(bg = "#FFFFFF")
-    window3.iconbitmap(r"leaguetrash\assets\frame0\icon.ico")
-    window3.title(f'Błąd')
-
-    canvas = Canvas(
-        window3,
-        bg = "#FFFFFF",
-        height = 700,
-        width = 1200,
-        bd = 0,
-        highlightthickness = 0,
-        relief = "ridge"
-    )
-
-    canvas.place(x = 0, y = 0)
-    image_image_100 = PhotoImage(
-        file=relative_to_assets("image_100.png"))
-    image_100 = canvas.create_image(
-        600.0,
-        350.0,
-        image=image_image_100
-    )
-
-    canvas.create_text(
-        138.0,
-        164.0,
-        anchor="nw",
-        text=f"Taki gracz jak {nick} nie istnieje!\nUpewnij się co do poprawności wpisanej nazwy",
-        fill="#ff0000",
-        font=("Inter", 20 * -1)
-    ) 
-
-
-    window3.resizable(False, False)
-    window3.mainloop()
-
-def nickname():
-    nick = entry_1.get()
-    name = str(nick.replace(' ', '%20'))
-    try:
-        url1 = f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}'
-        name_api_link =(url1+"?api_key="+api_key)
-        player_info = requests.get(name_api_link)
-        resp1 = player_info.json()
-        puuid = resp1['puuid']
-        id = resp1['id']
-
-
-        #print(f'=======\nObecna ranga\n=======')
-        #functions.rank(id=id)
-        #print(f'=======\nStatystyki z ostatniej gry\n=======')
-        #functions.champion(puuid=puuid)
-        #functions.kda(puuid=puuid)
-        #functions.CS(puuid=puuid)
-        #functions.gold(puuid=puuid)
-        #functions.visionscore(puuid=puuid)
-        #functions.damage(puuid=puuid)
-        #print(f'=======\nStatystyki twojej Maestri\n=======')   
-        #functions.maestria(id=id)
-        opennewwindow(nick=nick)
-    except:
-        print(
-            '❌Taki gracz nie istnieje❌'
-            )
-        error_window(nick=nick)
-        
-
 
 
 window = Tk()

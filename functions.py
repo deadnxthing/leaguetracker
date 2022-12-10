@@ -1,148 +1,7 @@
 from apikey import api_key
 import requests
 
-
-def kda(puuid):
-    url2 = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=20"
-        + "&api_key="
-        + api_key
-    )
-    matches_ids = requests.get(url2)
-    resp2 = matches_ids.json()
-    match_url = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[0]}"
-        + "?api_key="
-        + api_key
-    )
-    match_info = requests.get(match_url)
-    resp3 = match_info.json()
-    user_index = resp3["metadata"]["participants"].index(puuid)
-    kills = resp3["info"]["participants"][user_index]["kills"]
-    deaths = resp3["info"]["participants"][user_index]["deaths"]
-    assists = resp3["info"]["participants"][user_index]["assists"]
-    kda = round((kills + assists) / deaths, 1)
-    print(f"KDA {kda}")
-
-
-def champion(puuid):
-    url2 = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=20"
-        + "&api_key="
-        + api_key
-    )
-    matches_ids = requests.get(url2)
-    resp2 = matches_ids.json()
-    match_url = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[0]}"
-        + "?api_key="
-        + api_key
-    )
-    match_info = requests.get(match_url)
-    resp3 = match_info.json()
-    user_index = resp3["metadata"]["participants"].index(puuid)
-    champ = resp3["info"]["participants"][user_index]["championName"]
-    print(f"Champion: {champ}")
-
-
-def visionscore(puuid):
-    url2 = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=20"
-        + "&api_key="
-        + api_key
-    )
-    matches_ids = requests.get(url2)
-    resp2 = matches_ids.json()
-    match_url = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[0]}"
-        + "?api_key="
-        + api_key
-    )
-    match_info = requests.get(match_url)
-    resp3 = match_info.json()
-    user_index = resp3["metadata"]["participants"].index(puuid)
-    vs = resp3["info"]["participants"][user_index]["visionScore"]
-    print(f"Punkty wizji: {vs}")
-
-
-def gold(puuid):
-    url2 = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=20"
-        + "&api_key="
-        + api_key
-    )
-    matches_ids = requests.get(url2)
-    resp2 = matches_ids.json()
-    match_url = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[0]}"
-        + "?api_key="
-        + api_key
-    )
-    match_info = requests.get(match_url)
-    resp3 = match_info.json()
-    user_index = resp3["metadata"]["participants"].index(puuid)
-    goldEarned = resp3["info"]["participants"][user_index]["goldEarned"]
-    czas = resp3["info"]["participants"][user_index]["timePlayed"]
-    minuty = czas / 60
-    goldperminute = round(goldEarned / minuty, 1)
-    print(f"Zdobyte złoto: {goldEarned}\nZłoto na minutę: {goldperminute}")
-
-
-def damage(puuid):
-    url2 = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=20"
-        + "&api_key="
-        + api_key
-    )
-    matches_ids = requests.get(url2)
-    resp2 = matches_ids.json()
-    match_url = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[0]}"
-        + "?api_key="
-        + api_key
-    )
-    match_info = requests.get(match_url)
-    resp3 = match_info.json()
-    user_index = resp3["metadata"]["participants"].index(puuid)
-    damage_to_champion = resp3["info"]["participants"][user_index][
-        "totalDamageDealtToChampions"
-    ]
-    damage_taken = resp3["info"]["participants"][user_index]["totalDamageTaken"]
-    healing = resp3["info"]["participants"][user_index]["totalHeal"]
-    true_damage_to_champion = resp3["info"]["participants"][user_index][
-        "trueDamageDealtToChampions"
-    ]
-    print(
-        f"Zadane obrazenia graczom: {damage_to_champion}\nZadane obrażenia nieuchronne: {true_damage_to_champion}\nCalkowite leczenie: {healing}\nOtrzymane obrazenia: {damage_taken}"
-    )
-
-
-def CS(puuid):
-    url2 = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=20"
-        + "&api_key="
-        + api_key
-    )
-    matches_ids = requests.get(url2)
-    resp2 = matches_ids.json()
-    match_url = (
-        f"https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[0]}"
-        + "?api_key="
-        + api_key
-    )
-    match_info = requests.get(match_url)
-    resp3 = match_info.json()
-    index = resp3["metadata"]["participants"].index(puuid)
-    miniony = resp3["info"]["participants"][index]["totalMinionsKilled"]
-    czas = resp3["info"]["participants"][index]["timePlayed"]
-    wszystko = resp3["info"]["participants"][index]
-    minuty = czas / 60
-    cs = round(miniony / minuty, 1)
-    print(f"CS {miniony} ({cs})")
-
-
-def rank(id):
-    try:
+def rankinfo(id):
         url2 = (
             f"https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/{id}"
             + "?api_key="
@@ -150,19 +9,66 @@ def rank(id):
         )
         rank_info = requests.get(url2)
         rank_info = rank_info.json()
-        ranga = rank_info
-        division = ranga[0]["tier"]
-        tier = ranga[0]["rank"]
-        lp = ranga[0]["leaguePoints"]
-        ranga_informacje = f"{division} {tier} {lp}LP"
-        wins = ranga[0]["wins"]
-        losses = ranga[0]["losses"]
+        return rank_info
+
+def lastmatchinfo(puuid):
+    url1=(
+        f'https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=20'
+        +'&api_key='
+        +api_key
+    )
+    matches_ids=requests.get(url1)
+    resp2= matches_ids.json()
+    match_url = (
+        f'https://europe.api.riotgames.com/lol/match/v5/matches/{resp2[0]}'
+        +'?api_key='
+        +api_key
+    )
+    match_info = requests.get(match_url)
+    resp = match_info.json()
+    user_index = resp["metadata"]["participants"].index(puuid)
+    return resp,user_index
+ 
+
+def last_match(resp,user_index):
+    champion=resp["info"]["participants"][user_index]["championName"]
+    kills = resp["info"]["participants"][user_index]["kills"]
+    deaths = resp["info"]["participants"][user_index]["deaths"]
+    assists = resp["info"]["participants"][user_index]["assists"]
+    damage_to_champion = resp["info"]["participants"][user_index]["totalDamageDealtToChampions"]
+    damage_taken = resp["info"]["participants"][user_index]["totalDamageTaken"]
+    healing = resp["info"]["participants"][user_index]["totalHeal"]
+    true_damage_to_champion = resp["info"]["participants"][user_index]["trueDamageDealtToChampions"]
+    visionscore = resp["info"]["participants"][user_index]["visionScore"]
+    goldEarned = resp["info"]["participants"][user_index]["goldEarned"]
+    miniony = resp["info"]["participants"][user_index]["totalMinionsKilled"]
+    czas = resp["info"]["participants"][user_index]["timePlayed"]
+    minuty = czas / 60
+    goldperminute = round(goldEarned / minuty, 1)
+    cs = round(miniony / minuty, 1)
+    cs=f'{miniony} ({cs})'
+    kda = round((kills + assists) / deaths, 1)
+    return kda,champion,visionscore,goldEarned,goldperminute,damage_to_champion,true_damage_to_champion,damage_taken,healing,cs
+    
+
+def rank(rank):
+    try:
+        division = rank[0]["tier"]
+        tier = rank[0]["rank"]
+        lp = rank[0]["leaguePoints"]
+        wins = rank[0]["wins"]
+        losses = rank[0]["losses"]
         played = wins + losses
         wr = round(wins / played * 100, 1)
         wr = f"Winrate: {wr}%  {wins}W {losses}L"
-        print(f"{ranga_informacje} \n{wr}")
     except Exception:
-        print("Ten użytkownik nie posiada rangi")
+        division = 'unranked'
+        tier = ''
+        lp = ''
+        wins =''
+        losses =''
+        wr = ''
+    return division,tier,lp,wr
 
 
 def maestria(id):
