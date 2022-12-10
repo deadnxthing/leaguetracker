@@ -21,6 +21,7 @@ m4yski
 ```
 [Ta linijka prowadzi do strony z rankingiem graczy, dorzcam jeśli te nazwy które podałem nie wystarczą do przetestowania programu
 Zalecam otworzyć ten przez kliknięcie ppm ponieważ inaczej otwiera się on na tej karcie)](https://www.op.gg/leaderboards/tier?hl=pl_PL&region=eune)
+s
 ![image](https://user-images.githubusercontent.com/119539361/206876710-78bedfbf-a525-456d-ad01-a8721cfe7e7d.png)
 
 
