@@ -17,7 +17,7 @@ def error_window(nick):
     window3= Toplevel(window)
     window3.geometry("700x500")
     window3.configure(bg = "#FFFFFF")
-    window3.iconbitmap(r"leaguetrash\assets\frame0\icon.ico")
+    window3.iconbitmap(r"leaguetracker\assets\frame0\icon.ico")
     window3.title(f'Błąd')
 
     canvas = Canvas(
@@ -104,7 +104,7 @@ def open_new_window(nick,kda,champion,visionscore,goldearned,goldpermin,dmgtochm
     window2= Toplevel(window)
     window2.geometry("1200x700")
     window2.configure(bg = "#FFFFFF")
-    window2.iconbitmap(r"leaguetrash\assets\frame0\icon.ico")
+    window2.iconbitmap(r"leaguetracker\assets\frame0\icon.ico")
     window2.title(f'Statystyki Przywoływacza {nick}')
 
     canvas = Canvas(
@@ -322,7 +322,7 @@ window = Tk()
 
 window.geometry("1000x750")
 window.configure(bg = "#FFFFFF")
-window.iconbitmap(r"leaguetrash\assets\frame0\icon.ico")
+window.iconbitmap(r"leaguetracker\assets\frame0\icon.ico")
 window.title("League Of Legends Stats Tracker by kuba.#4158")
 
 
