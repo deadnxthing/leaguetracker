@@ -19,7 +19,7 @@ Alpkazizi
 ```
 m4yski
 ```
-[Ta linijka prowadzi do strony na której jest wyświetlany ranking graczy dorzcam jeśli te 3 przykładowe nie wystarczą](https://www.op.gg/leaderboards/tier?hl=pl_PL&region=eune)
+[Ta linijka prowadzi do strony z rankingiem graczy, dorzcam jeśli te nazwy które podałem nie wystarczą do przetestowania programu](https://www.op.gg/leaderboards/tier?hl=pl_PL&region=eune)
 
 Po wpisaniu nazwy i kliknięciu przycisku "Potwierdz" ukaże nam się okno ze statystykami
 > jako przykład wykorzystam jeden z wyżej wymienionych nicków
