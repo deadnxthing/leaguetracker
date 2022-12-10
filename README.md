@@ -27,4 +27,5 @@ Zalecam otworzyć ten link w taki sposób po kliknięciu ppm ponieważ inaczej o
 Po wpisaniu nazwy i kliknięciu przycisku "Potwierdz" ukaże nam się okno ze statystykami
 > jako przykład wykorzystam jeden z wyżej wymienionych nicków
 ![image](https://user-images.githubusercontent.com/119539361/206876179-323b4bd3-e90d-4b6f-adfa-cd548b648ab4.png)
+>Informacje podane w przykładach mogą się róznić od tych z aplikacji ze względu na to że konta które podałem są aktywne
 
