@@ -12,6 +12,10 @@ Aby to zrobić należy uruchomić plik main.py powinno ukazać się takie oto ok
 oto kilka sugerowanych przezemnie nazw
 ```
 nerf antiheai
+```
+```
 Alpkazizi
+```
+```
 m4yski
 ```
