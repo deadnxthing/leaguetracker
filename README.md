@@ -34,7 +34,6 @@ Po wpisaniu nazwy i kliknięciu przycisku "Potwierdz" ukaże nam się okno ze st
 Do potwierdzenia tych informacji można zajrzeć [na tą strone](https://www.op.gg/) na której należy wybrać region **Europe Nordic & East** a następnie wpisać wybrany przez nas nick. Po wejściu na profil danego gracza należy zaktualizować informacje klikając ten przycisk![image](https://user-images.githubusercontent.com/119539361/206876917-efb16724-06ab-4972-9c13-2c0876fe1020.png) a następnie odczekać chwilę
 
 
-
-
+Jak widać wszystko się zgadza
 
 
