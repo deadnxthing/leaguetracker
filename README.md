@@ -35,7 +35,7 @@ Do potwierdzenia tych informacji można zajrzeć [na tą strone](https://www.op.
 
 
 Jak widać wszystko się zgadza
->![image](https://user-images.githubusercontent.com/119539361/206877002-636b01c6-b0a2-4a9b-a46d-cad9c6d09dbf.png)
-Jedyna różnica jest taka że na op.gg pokazuje inna liczbę wygranych i przegranych gier(2W do 33W oraz 2P do 39L) wynika to z tego że niedawno zakończył się sezon w grze i op.gg liczy od początku a LeagueTracker zlicza każdą grę
+
+>Jedyna różnica jest taka że na op.gg pokazuje inna liczbę wygranych i przegranych gier(2W do 33W oraz 2P do 39L) wynika to z tego że niedawno zakończył się sezon w grze i op.gg liczy od początku a LeagueTracker zlicza każdą grę
 
 
