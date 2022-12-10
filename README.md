@@ -20,7 +20,9 @@ Alpkazizi
 m4yski
 ```
 [Ta linijka prowadzi do strony z rankingiem graczy, dorzcam jeśli te nazwy które podałem nie wystarczą do przetestowania programu
-Zalecam otworzyć ten przez kliknięcie ppm ponieważ inaczej otwiera się on na tej karcie![image](https://user-images.githubusercontent.com/119539361/206876544-34853b08-6d15-486c-a2df-2342a39f5c2b.png)
+Zalecam otworzyć ten przez kliknięcie ppm ponieważ inaczej otwiera się on na tej karcie
+
+![image](https://user-images.githubusercontent.com/119539361/206876544-34853b08-6d15-486c-a2df-2342a39f5c2b.png)
 ](https://www.op.gg/leaderboards/tier?hl=pl_PL&region=eune)
 
 
