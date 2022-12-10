@@ -8,3 +8,10 @@
 
 Aby to zrobić należy uruchomić plik main.py powinno ukazać się takie oto okno w którym należy wpisać nazwę gracza którego statystyki chcemy zobaczyć
 ![image](https://user-images.githubusercontent.com/119539361/206875999-55aac95d-ef84-43ce-a11f-ca170b2ac951.png)
+
+oto kilka sugerowanych przezemnie nazw
+```
+nerf antiheai
+Alpkazizi
+m4yski
+```
