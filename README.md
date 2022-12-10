@@ -30,3 +30,9 @@ Po wpisaniu nazwy i kliknięciu przycisku "Potwierdz" ukaże nam się okno ze st
 ![image](https://user-images.githubusercontent.com/119539361/206876179-323b4bd3-e90d-4b6f-adfa-cd548b648ab4.png)
 >Informacje podane w przykładzie powyżej mogą się róznić od tych z aplikacji ze względu na to że wszystkie te konta są aktywne
 
+
+Do potwierdzenia tych informacji można zajrzeć [na tą strone](https://www.op.gg/) na której należy wybrać region >![image](https://user-images.githubusercontent.com/119539361/206876789-0460330c-3910-4ffc-925f-21b9af893393.png) Europe Nordic & East
+
+A następnie wpisać wybrany przez nas nick
+
+
