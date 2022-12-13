@@ -273,7 +273,7 @@ def open_new_window(nick,kda,champion,visionscore,goldearned,goldpermin,dmgtochm
     #ranga
 
     canvas.create_text(
-        630.0,
+        600.0,
         500.0,
         anchor="nw",
         text=(f'{division} {tier} {lp}'),
